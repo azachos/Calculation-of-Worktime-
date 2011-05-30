@@ -70,18 +70,20 @@ Calendar.prototype.generateHTML = function(){
 				}
 				html += '</tr><tr>';
 
-				html += '<td class="calendar-day">Start</td>';
+				html += '<td class="calendar-day"><p>Start</p>';
+				html += '<p>End</p><p>Day Off</p></td>';
 				for (var i = 0; i < monthLength; i++) { 
 								html += '<td class="calendar-time">';
-								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="5" value="12:00" />';
-								html += '</td>';
-				}
-
-				html += '</tr><tr>';
-				html += '<td class="calendar-day">End</td>';
-				for (var i = 0; i < monthLength; i++) { 
-								html += '<td class="calendar-time">';
-								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="5" value="21:00" />';
+								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" value="12:00" />';
+							//	html += '</td>';
+				
+				html += '</br>';
+				//html += '</tr><tr>';
+				//html += '</br><td class="calendar-day">End</td>';
+				//for (var i = 0; i < monthLength; i++) { 
+							//	html += '<td class="calendar-time">';
+								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="1" value="21:00" />';
+								html += '</br><input type="checkbox" id="dayoff' + i +'" />';
 								html += '</td>';
 				}
 
@@ -141,6 +143,8 @@ function loadXMLDoc()
 								if (xmlhttp.readyState==4 && xmlhttp.status==200)
 								{
 												document.getElementById("otherDiv").innerHTML=xmlhttp.responseText;
+								} else if (xmlhttp.readyState==3) {
+									document.getElementById("otherDiv").innterHTML="Loading...";
 								}
 				}
 				xmlhttp.open("POST","test.php",true);
@@ -157,7 +161,8 @@ function loadXMLDoc()
 				for(var i = 0; i < monthLength; i++) {
 					var a = document.getElementById("start_time_day"+i).value;
 					var b = document.getElementById("end_time_day"+i).value;
-					params += '&start_time_day'+i+'='+a+'&end_time_day'+i+'='+b;
+					var c = document.getElementById("dayoff"+i).value;
+					params += '&start_time_day'+i+'='+a+'&end_time_day'+i+'='+b+'&dayoff'+i+'='+c;
 				}
 				xmlhttp.send(params);
 }

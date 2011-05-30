@@ -1,4 +1,3 @@
-<? #comment ?>
 <html>
 
 				<head>
@@ -18,7 +17,7 @@
 <select id="category" name="category">
 <option selected value="O">Οικοδόμος</option>
 <option value="H">Ημερομίσθιος</option>
-<option value="M">Μισθωτός</option>
+<option value="Y">Υπάλληλος</option>
 </select>
 
 </td><tr>
@@ -38,11 +37,9 @@ for($lt=0; $lt<12; $lt++) {
 
 				</td></tr></table>												
 
-				<input type="submit" name="submit">
-
 				</form>		
 				<div id="myDiv"><script type="text/javascript">loadGrid()</script></div>
-				<div id="otherDiv">dgdg</div>
+				<div id="otherDiv">Output:</div>
 				</div>
 				</body>
 
