@@ -1,0 +1,34 @@
+#main {
+				width: 700px;
+				text-align: center;
+				font:  0.7em arial,sans-serif;
+
+}
+
+.calendar-table {
+				border: 1px  black;
+				background-color: #3385E4;
+				color: white;
+
+}
+
+
+.calendar-day {
+				background-color: #3385E4;
+				color: white;
+				font:  0.7em arial,sans-serif;
+}
+
+.calendar-weekend {
+				background-color: #FF6633 ;
+				color: white;
+				font: 0.7em arial,sans-serif;
+}
+
+.calendar-time {
+				background-color: white;
+}
+
+#myDiv {
+				width: 600px;
+}
