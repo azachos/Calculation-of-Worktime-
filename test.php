@@ -22,7 +22,6 @@ $xml_output .= "</data>\n";
 echo $_POST['dayoff4'];
 //echo $xml_output;
 
-
 $myFile = "data.xml";
 $fh = fopen($myFile, 'w') or die("can't open file");
 fwrite($fh, $xml_output);
@@ -38,15 +37,13 @@ $connectionInfo = array( "Database"=>"TIMEATT6");
 $dbconn = sqlsrv_connect($Server, $connectionInfo)
   or die("Couldn't connect to SQL Server on $Server");
 
-  /*
+/*  
 $myFile = "data.xml";
 $ParameterOne = "";
 $fh = fopen($myFile, 'r');
 $ParameterOne = fread($fh,filesize($myFile));
 fclose($fh);
-
-
-echo "<!--" .$ParameterOne ."-->";
+//echo "<!--" .$ParameterOne ."-->";
 */
 
 $xml = simplexml_load_string($xml_output);
@@ -56,24 +53,54 @@ $getdata = $xml->xpath("/data/id");
 $query = "execute InputDays4 '" .$xml_output ."'";
 
 //execute the SQL query and return records
-sqlsrv_query($dbconn, $query);
+$stmt=sqlsrv_query($dbconn, $query);
 
+/*
 $query = "execute myproc '" .$getdata[0] ."'";
 //execute the SQL query and return records
-$result = sqlsrv_query($dbconn, $query);
+$stmt = sqlsrv_query($dbconn, $query);
+*/
+
+$prev_stmt=$stmt;
+while (sqlsrv_rows_affected($stmt) >0 ) {	//while positive we are fetching messages, -1 means recordset
+echo "<br>" .sqlsrv_rows_affected($stmt);	
+$prev_stmt=$stmt;			//keep the previou statement
+sqlsrv_next_result($stmt);	//next message
+}
+$result = $prev_stmt;	//load recordset
 
 //display the results
-if ($result != null) {
+if ($result) {
 	//echo $result;
 	//echo "num rows" .sqlsrv_num_rows($result);
 	?>
 	<html><head><meta http-equiv="Content-type" content="text/html; charset=iso8859-7;" />
 	<link rel="stylesheet" type="text/css" href="style.css"></head>
 	<body>
-	<table>
+	<table class="sample">
+<!--	<tr>
+		<td>
+			Day
+		</td>
+		<?
+			for($i=0; $i<monthLength; $i++) {
+				echo "<td>" .$i+1 ."</td>";
+			}
+		?>
+	</tr>
 	<tr>
 		<td>
-				<table class="sample">
+			Start
+		</td>
+		<?
+			for($i=0; $i<monthLength; $i++) {
+				echo "<td>" .$i+1 ."</td>";
+			}
+		?>
+	</tr>
+-->	<tr>
+		<td>
+				<table class="sample2">
 				<tr><td>ыяес</td></tr>
 				<tr><td>йамом</td></tr>
 				<tr><td>упея 1.2</td></tr>
@@ -86,10 +113,10 @@ if ($result != null) {
 				</table>
 			</td>
 	<?
-	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+	while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 	?> 
 			<td>
-				<table class="sample">
+				<table class="sample2">
 				<tr><td><?if ($row['totaltime'] != null) echo $row['totaltime']; else echo 0;?></td></tr>
 				<tr><td><?if ($row['OT1'] != null) echo $row['OT1'];  else echo 0;?></td></tr>
 				<tr><td><?if ($row['OT12'] != null) echo $row['OT12'];  else echo 0;?></td></tr>

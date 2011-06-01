@@ -1,7 +1,7 @@
 #main {
 			/*	width: 1000px;*/
 				text-align: center;
-				font:  0.7em arial,sans-serif;
+				font:  0.6em arial,sans-serif;
 
 }
 
@@ -16,22 +16,26 @@
 .calendar-day {
 				background-color: #3385E4;
 				color: white;
-				font:  0.7em arial,sans-serif;
+				font:  0.6em arial,sans-serif;
 }
 
 .calendar-weekend {
 				background-color: #FF6633 ;
 				color: white;
-				font: 0.7em arial,sans-serif;
+				font: 0.6em arial,sans-serif;
 }
 
 .calendar-time {
 				background-color: white;
 }
 
+.input {
+	font: 0.6em arial,sans-serif;
+}
+
 table.sample {
-	border-width: 1px;
-	border-spacing: 1px;
+	border-width: 0px;
+	border-spacing: 0px;
 	border-style: solid;
 	border-color: gray;
 	border-collapse: collapse;
@@ -46,14 +50,40 @@ table.sample th {
 	-moz-border-radius: ;
 }
 table.sample td {
-	border-width: thin;
-	padding: 2px;
+	border-width: 0px;
+	padding: 0px;
 	border-style: solid;
 	border-color: gray;
 	background-color: white;
 	-moz-border-radius: ;
+	font: 0.8em arial,sans-serif;
+}
+
+table.sample2 {
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: gray;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+table.sample2 td {
+	border-width: thin;
+	padding: 5px;
+	border-style: solid;
+	border-color: gray;
+	background-color: white;
+	-moz-border-radius: ;
+	font: 0.7em arial,sans-serif;
+	text-align: center;
+	
 }
 
 #myDiv {
-				width: 600px;
+	width: 600px;
+}
+
+#otherDiv {
+	padding-top: 50px;
 }
