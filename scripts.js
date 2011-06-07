@@ -47,8 +47,7 @@ Calendar.prototype.generateHTML = function(){
 
 				// do the header
 				var monthName = cal_months_labels[this.month]
-								var html = '<button type="button" onclick="loadXMLDoc()">Request data</button>'; 
-								html += '</br><table class="calendar-table">';
+								var html = '</br><table class="calendar-table">';
 				html += '<tr><th colspan="7">';
 				html +=  monthName + "&nbsp;" + this.year;
 
@@ -82,9 +81,18 @@ Calendar.prototype.generateHTML = function(){
 
 				html += '<td class="calendar-day"><p>Off</p>';
 				html += '<p>End</p><p>Start</p></td>';
+				var current,currentDay;
 				for (var i = 0; i < monthLength; i++) { 
 								html += '<td class="calendar-time">';
-								html += '<input type="checkbox" id="dayoff' + i +'"  value="no"/>';
+								current = new Date(this.year, this.month, i);
+								currentDay = current.getDay();
+								var e = document.getElementById("category");
+								var category = e.options[e.selectedIndex].value;
+								if ((currentDay <5) && (category != 'O')) {
+									html += '<input type="checkbox" id="dayoff' + i +'"  value="no"/>';
+								} else {
+									html += '</br><input type="hidden" id="dayoff' + i +'"  value="no"/>';
+								}
 								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
 							//	html += '</td>';
 				
@@ -99,6 +107,8 @@ Calendar.prototype.generateHTML = function(){
 				}
 
 				html += '</tr></table>';
+				html += '<p><button type="button" onclick="loadXMLDoc()">Request data</button>'; 
+				html += '<button type="button" onclick="loadGrid()">Clear data</button></p>'; 
 			//	html += '</br><button type="button" onclick="loadXMLDoc()">Request data</button>'; 
 
 				this.html = html;

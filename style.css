@@ -1,8 +1,13 @@
-#main {
-			/*	width: 1000px;*/
+.main {
+				width: 1300px;
 				text-align: center;
 				font:  0.6em arial,sans-serif;
-
+				margin: 0px auto;
+				border : solid 1px #000000;
+				-moz-border-radius: 2em;
+				border-radius: 2em;
+				padding-top: 20px;
+				padding-bottom: 20px;
 }
 
 .calendar-table {
@@ -81,9 +86,12 @@ table.sample2 td {
 }
 
 #myDiv {
-	width: 600px;
-}
+	width: 95%;
+	margin: 0px auto;
+	}
 
 #otherDiv {
 	padding-top: 50px;
+	width: 95%;
+	margin: 0px auto;
 }

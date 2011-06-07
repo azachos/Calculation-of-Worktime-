@@ -13,13 +13,38 @@ $xml_output .= "<category>" .$_POST['category']. "</category>\n";
 for($i=0 ; $i<$monthLength; $i++) {
 				$xml_output .= "<day>\n";
 				$day = $i+1;
+				
+				//if end time is earlier than start time -> the end day is the next day
+				$h1 = strtotime($_POST['start_time_day'.$i]);
+				$h2 = strtotime($_POST['end_time_day'.$i]);
+				$h1 = date("H", $h1);
+				$h2 = date("H", $h2);
+				$endday = $day;
+				$endmonth = $_POST['month'];
+				$endyear = $year;
+				if ($h2<=$h1) {		//if end time is earlier than start time -> the end day is the next day
+					$endday = $day+1;
+					if (($endday) > $monthLength) {
+						$endday = 1;
+						$endmonth++;
+						if ($endmonth == 13) {
+							$endmonth = 1;
+							$endyear++;
+						}
+					}
+				}
 				$xml_output .= "<holiday>" .$_POST['holiday'.$i] ."</holiday>\n" ."<dayoff>" .$_POST['dayoff'.$i]   ."</dayoff>\n" ."<startdate>" .$year ."-" .$_POST['month'] ."-" .$day ." " .$_POST['start_time_day'.$i]. "</startdate>\n";
-				$xml_output	.= "<enddate>" .$year ."-" .$_POST['month'] ."-" .$day ." " .$_POST['end_time_day'.$i]. "</enddate>\n";
+				$xml_output	.= "<enddate>" .$endyear ."-" .$endmonth ."-" .$endday ." " .$_POST['end_time_day'.$i]. "</enddate>\n";
 				$xml_output .= "</day>\n";
 }
 $xml_output .= "</data>\n";
 
-echo $_POST['dayoff4'];
+echo $_POST['start_time_day1'] ."</br>";
+$h2 = strtotime($_POST['start_time_day1'])."</br>";
+//echo $_POST['dayoff4'];
+
+$hour = date("H", $h2);
+echo $hour;
 //echo $xml_output;
 
 $myFile = "data.xml";
