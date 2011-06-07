@@ -21,6 +21,14 @@ function Calendar(month, year) {
 				this.html = '';
 }
 
+function isHoliday(day, month, year) {
+		if ((month == 3) && (day==25)) {
+				return 'yes';
+		 } else {
+			return 'no';
+		}
+}
+
 Calendar.prototype.generateHTML = function(){
 
 				// get first day of month
@@ -63,6 +71,7 @@ Calendar.prototype.generateHTML = function(){
 																day_num = 0;
 
 												html += cal_days_labels[day_num] + ' '+ day;
+												html += '<input type="hidden" id="holiday' + (day-1) + '" name="holiday" value="' + isHoliday(day,this.month,this.year) + '"</input>';
 												day++;
 												day_num++;
 
@@ -71,20 +80,21 @@ Calendar.prototype.generateHTML = function(){
 				}
 				html += '</tr><tr>';
 
-				html += '<td class="calendar-day"><p>Start</p>';
-				html += '<p>End</p><p>Day Off</p></td>';
+				html += '<td class="calendar-day"><p>Off</p>';
+				html += '<p>End</p><p>Start</p></td>';
 				for (var i = 0; i < monthLength; i++) { 
 								html += '<td class="calendar-time">';
+								html += '<input type="checkbox" id="dayoff' + i +'"  value="no"/>';
 								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
 							//	html += '</td>';
 				
-				html += '</br>';
+				//html += '</br>';
 				//html += '</tr><tr>';
 				//html += '</br><td class="calendar-day">End</td>';
 				//for (var i = 0; i < monthLength; i++) { 
 							//	html += '<td class="calendar-time">';
 								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="1" class="input" value="21:00" />';
-								html += '</br><input type="checkbox" id="dayoff' + i +'" />';
+								
 								html += '</td>';
 				}
 
@@ -143,9 +153,11 @@ function loadXMLDoc()
 				{
 								if (xmlhttp.readyState==4 && xmlhttp.status==200)
 								{
-												document.getElementById("otherDiv").innerHTML=xmlhttp.responseText;
+												//document.getElementById("otherDiv").innerHTML=xmlhttp.responseText;
+												effect(xmlhttp.responseText);
 								} else if (xmlhttp.readyState==3) {
-									document.getElementById("otherDiv").innterHTML="Loading...";
+									//document.getElementById("otherDiv").innerHTML="Loading...";
+									//effect();
 								}
 				}
 				xmlhttp.open("POST","test.php",true);
@@ -163,7 +175,24 @@ function loadXMLDoc()
 					var a = document.getElementById("start_time_day"+i).value;
 					var b = document.getElementById("end_time_day"+i).value;
 					var c = document.getElementById("dayoff"+i).value;
-					params += '&start_time_day'+i+'='+a+'&end_time_day'+i+'='+b+'&dayoff'+i+'='+c;
+					if (document.getElementById("dayoff"+i).checked)
+						c = 'yes';
+						
+					var d = document.getElementById("holiday"+i).value;
+					params += '&start_time_day'+i+'='+a+'&end_time_day'+i+'='+b+'&dayoff'+i+'='+c+'&holiday'+i+'='+d;
 				}
 				xmlhttp.send(params);
+}
+
+function effect(str){
+    $("#otherDiv").fadeTo(300,0.0,function() {
+        $("#otherDiv")
+        .parent().prepend('<img src="loading.gif" />') //add the image to the container, so you can see it still
+        .end().load(str, function(){
+            $("#otherDiv")
+            .parent().find('img').remove() //remove the image once the page is loaded. 
+            .end().end().fadeTo(300,1.0);
+			$("#otherDiv").html(str);
+		});
+    }); 
 }

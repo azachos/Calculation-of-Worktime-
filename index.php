@@ -7,6 +7,7 @@
 									<meta http-equiv="Content-type" content="text/html; charset=utf-8;" />
 								<link rel="stylesheet" type="text/css" href="style.css">
 <script type="text/javascript" src="scripts.js"></script>
+<script src="jquery-1.6.1.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -39,7 +40,9 @@ for($lt=0; $lt<12; $lt++) {
 
 				</form>		
 				<div id="myDiv"><script type="text/javascript">loadGrid()</script></div>
+				<div>
 				<div id="otherDiv">Output:</div>
+				</div>
 				</div>
 				</body>
 

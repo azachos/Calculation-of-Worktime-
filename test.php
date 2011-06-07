@@ -1,4 +1,4 @@
-<?
+О╩©<?
 //echo $_POST['category'];
 $monthLength = $_POST['length'];
 $year = $_POST['year'];
@@ -13,7 +13,7 @@ $xml_output .= "<category>" .$_POST['category']. "</category>\n";
 for($i=0 ; $i<$monthLength; $i++) {
 				$xml_output .= "<day>\n";
 				$day = $i+1;
-				$xml_output .= "<dayoff>" .$_POST['dayoff'.$i] ."</dayoff>\n" ."<startdate>" .$year ."-" .$_POST['month'] ."-" .$day ." " .$_POST['start_time_day'.$i]. "</startdate>\n";
+				$xml_output .= "<holiday>" .$_POST['holiday'.$i] ."</holiday>\n" ."<dayoff>" .$_POST['dayoff'.$i]   ."</dayoff>\n" ."<startdate>" .$year ."-" .$_POST['month'] ."-" .$day ." " .$_POST['start_time_day'.$i]. "</startdate>\n";
 				$xml_output	.= "<enddate>" .$year ."-" .$_POST['month'] ."-" .$day ." " .$_POST['end_time_day'.$i]. "</enddate>\n";
 				$xml_output .= "</day>\n";
 }
@@ -63,7 +63,7 @@ $stmt = sqlsrv_query($dbconn, $query);
 
 $prev_stmt=$stmt;
 while (sqlsrv_rows_affected($stmt) >0 ) {	//while positive we are fetching messages, -1 means recordset
-echo "<br>" .sqlsrv_rows_affected($stmt);	
+//echo "<br>" .sqlsrv_rows_affected($stmt);	
 $prev_stmt=$stmt;			//keep the previou statement
 sqlsrv_next_result($stmt);	//next message
 }
@@ -74,7 +74,7 @@ if ($result) {
 	//echo $result;
 	//echo "num rows" .sqlsrv_num_rows($result);
 	?>
-	<html><head><meta http-equiv="Content-type" content="text/html; charset=iso8859-7;" />
+	<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8;" />
 	<link rel="stylesheet" type="text/css" href="style.css"></head>
 	<body>
 	<table class="sample">
@@ -101,15 +101,15 @@ if ($result) {
 -->	<tr>
 		<td>
 				<table class="sample2">
-				<tr><td>ыяес</td></tr>
-				<tr><td>йамом</td></tr>
-				<tr><td>упея 1.2</td></tr>
-				<tr><td>упея 1.8</td></tr>
-				<tr><td>мувта 1.25</td></tr>
-				<tr><td>саббато 1.3</td></tr>
-				<tr><td>упея саб 2.10</td></tr>
-				<tr><td>йуя/аяциа 1.75</td></tr>
-				<tr><td>упея йуя/аяциа</td></tr>
+				<tr><td>н╘н║н∙нё</td></tr>
+				<tr><td>н н▒н²н÷н²</td></tr>
+				<tr><td>н╔н═н∙н║ 1.2</td></tr>
+				<tr><td>н╔н═н∙н║ 1.8</td></tr>
+				<tr><td>н²н╔н╖н╓н▒ 1.25</td></tr>
+				<tr><td>нён▒н▓н▓н▒н╓н÷ 1.3</td></tr>
+				<tr><td>н╔н═н∙н║ нён▒н▓н▓н▒н╓н÷ 2.10</td></tr>
+				<tr><td>н н╔н║/н▒н║н⌠н≥н▒ 1.75</td></tr>
+				<tr><td>н╔н═н∙н║ н н╔н║/н▒н║н⌠н≥н▒</td></tr>
 				</table>
 			</td>
 	<?
