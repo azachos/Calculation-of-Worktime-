@@ -91,9 +91,9 @@ Calendar.prototype.generateHTML = function(){
 								if ((currentDay <5) && (category != 'O')) {
 									html += '<input type="checkbox" id="dayoff' + i +'"  value="no"/>';
 								} else {
-									html += '</br><input type="hidden" id="dayoff' + i +'"  value="no"/>';
+									html += '<input type="hidden" id="dayoff' + i +'"  value="no"/>';
 								}
-								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
+								html += '</br><input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
 							//	html += '</td>';
 				
 				//html += '</br>';
