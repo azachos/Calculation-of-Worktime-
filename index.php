@@ -7,16 +7,19 @@
 									<meta http-equiv="Content-type" content="text/html; charset=utf-8;" />
 								<link rel="stylesheet" type="text/css" href="style.css">
 <script type="text/javascript" src="scripts.js"></script>
+<script src="jquery-1.6.1.js" type="text/javascript"></script>
 </head>
 
 <body>
-<div id="main">
+<div class="main">
+<h1>Υπολογισμός Υπερωριών</h4>
+<div>
 <form name="form" action="" method="post">
 <table align="center">												
 <tr><td>Κατηγορία υπαλλήλου:</td><td>												
-<select id="category" name="category">
-<option selected value="O">Οικοδόμος</option>
-<option value="H">Ημερομίσθιος</option>
+<select id="category" name="category" onchange="loadGrid();">
+<option value="O">Οικοδόμος</option>
+<option selected value="H">Εργάτης</option>
 <option value="Y">Υπάλληλος</option>
 </select>
 
@@ -37,9 +40,12 @@ for($lt=0; $lt<12; $lt++) {
 
 				</td></tr></table>												
 
-				</form>		
+				</form>	
+				</div>
 				<div id="myDiv"><script type="text/javascript">loadGrid()</script></div>
+				<div>
 				<div id="otherDiv">Output:</div>
+				</div>
 				</div>
 				</body>
 
