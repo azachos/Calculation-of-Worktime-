@@ -20,7 +20,7 @@ for($i=0 ; $i<$monthLength; $i++) {
 $xml_output .= "</data>\n";
 
 echo $_POST['dayoff4'];
-//echo $xml_output;
+echo $xml_output;
 
 $myFile = "data.xml";
 $fh = fopen($myFile, 'w') or die("can't open file");

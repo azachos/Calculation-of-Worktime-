@@ -75,7 +75,7 @@ Calendar.prototype.generateHTML = function(){
 				html += '<p>End</p><p>Day Off</p></td>';
 				for (var i = 0; i < monthLength; i++) { 
 								html += '<td class="calendar-time">';
-								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
+								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day"  size="4" class="input" value="12:00" />';
 							//	html += '</td>';
 				
 				html += '</br>';
@@ -83,8 +83,8 @@ Calendar.prototype.generateHTML = function(){
 				//html += '</br><td class="calendar-day">End</td>';
 				//for (var i = 0; i < monthLength; i++) { 
 							//	html += '<td class="calendar-time">';
-								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="1" class="input" value="21:00" />';
-								html += '</br><input type="checkbox" id="dayoff' + i +'" />';
+								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="4" class="input" value="21:00" />';
+								html += '</br><input type="checkbox" id="dayoff' + i +' value="No" " />';
 								html += '</td>';
 				}
 
