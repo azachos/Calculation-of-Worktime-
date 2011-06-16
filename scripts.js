@@ -94,7 +94,6 @@ Calendar.prototype.generateHTML = function(){
 									html += '</br><input type="hidden" id="dayoff' + i +'"  value="no"/>';
 								}
 								html += '<input type="text" id="start_time_day' + i +'" name="start_time_day" size="1" class="input" value="12:00" />';
->>>>>>> origin/master
 							//	html += '</td>';
 				
 				//html += '</br>';
@@ -102,9 +101,6 @@ Calendar.prototype.generateHTML = function(){
 				//html += '</br><td class="calendar-day">End</td>';
 				//for (var i = 0; i < monthLength; i++) { 
 							//	html += '<td class="calendar-time">';
-
-								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="4" class="input" value="21:00" />';
-								html += '</br><input type="checkbox" id="dayoff' + i +' value="No" " />';
 								html += '<input type="text" id="end_time_day' + i +'"name=end_time_day' + i + ' size="1" class="input" value="21:00" />';
 								
 								html += '</td>';
@@ -119,6 +115,48 @@ Calendar.prototype.generateHTML = function(){
 }
 
 Calendar.prototype.getHTML = function() {
+				return this.html;
+}
+
+Calendar.prototype.getMonthLength
+function loadGrid() {
+				var e = document.getElementById("month");
+				var str = e.options[e.selectedIndex].value;
+				var cal = new Calendar(str);
+				cal.generateHTML();
+				document.getElementById("myDiv").innerHTML = cal.getHTML();
+
+}
+
+function Show() {
+				var e = document.getElementById("month");
+				var str = e.options[e.selectedIndex].value;
+				var monthLength = cal_days_in_month[str];
+				str++;
+
+				var html = 'start' + monthLength + '</br>';
+				//	document.getElementById("otherDiv").innerHTML = html;
+
+
+				for (var i = 0; i < monthLength; i++) {
+								var time = document.getElementById("start_time_day"+i).value;
+								html += '2011/' + str + '/' + (i+1) + '  ' + time  +  ':00:000</br>';
+				}
+				html += 'end';
+				this.html = html;
+				document.getElementById("otherDiv").innerHTML = this.html;
+
+}
+
+function loadXMLDoc()
+{
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				{// code for IE7+, Firefox, Chrome, Opera, Safari
+								xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{// code for IE6, IE5
 								xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 				}
 				xmlhttp.onreadystatechange=function()
@@ -136,6 +174,11 @@ Calendar.prototype.getHTML = function() {
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
 				var e = document.getElementById("month");
+				var month = e.options[e.selectedIndex].value;
+				var monthLength = cal_days_in_month[month];
+				var e = document.getElementById("category");
+				var category = e.options[e.selectedIndex].value;
+				var year = cal_current_date.getFullYear();
 				month++;
 				var params = 'category=' + category + '&year=' + year +'&month=' + month + '&length=' + monthLength;
 				for(var i = 0; i < monthLength; i++) {
